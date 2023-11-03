@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651131926958",
+    "project_id": "upandsendfiles",
+    "storage_bucket": "upandsendfiles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651131926958:android:272648cd76584e6473703f",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4Ob3sYKqQv2gDkc2FaCHgMMX3CgRJD8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
