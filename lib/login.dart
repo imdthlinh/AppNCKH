@@ -191,12 +191,12 @@ class _loginPageState extends State<loginPage>{
       if (passController.text.length < 8)  passWrongFormat=true;
       else passWrongFormat=false;
       if (!passInvalid && !userInvalid) {
-        Navigator.push(context, MaterialPageRoute(builder: gotoHome));
+        //Navigator.push(context, MaterialPageRoute(builder: gotoHome));
       }
     });
 
   }
-  Widget gotoHome(BuildContext context){
-    return HomePage();
-  }
+  // Widget gotoHome(BuildContext context){
+  //   return HomePage();
+  // }
 }
