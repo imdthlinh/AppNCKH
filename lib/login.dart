@@ -3,15 +3,25 @@ import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(loginPage());
 
-class MyApp extends StatefulWidget{
+class loginPage extends StatefulWidget{
   @override
-  _MyAppState createState() => _MyAppState();
+  _loginPageState createState() => _loginPageState();
 }
 
-class _MyAppState extends State<MyApp>{
+class _loginPageState extends State<loginPage>{
 
+  var wrongCredentialErr= "Wrong username or passwords";
+  var notFormatedPass= "Passwords must be longer than 8 charaters";
+  var userInvalid=false;
+  var passInvalid=false;
+  var passWrongFormat=false;
+
+  TextEditingController userController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
+
+  bool _showPass= false;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -24,9 +34,9 @@ class _MyAppState extends State<MyApp>{
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         colors: [
-                          Colors.pink.shade900,
-                          Colors.pink.shade800,
-                          Colors.pink.shade400
+                          Colors.blue.shade900,
+                          Colors.blue.shade800,
+                          Colors.blue.shade400
                         ]
                     )
                 ),
@@ -67,9 +77,11 @@ class _MyAppState extends State<MyApp>{
                           Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                             child: TextField(
+                              controller: userController,
                               style: TextStyle(fontSize: 18, color: Colors.black),
                               decoration: InputDecoration(
                                   labelText: "USERNAME",
+                                  errorText: userInvalid ? wrongCredentialErr : null,
                                   labelStyle: TextStyle(
                                       color: Color(0xff000000), fontSize: 15)
                         ),
@@ -84,16 +96,18 @@ class _MyAppState extends State<MyApp>{
                             TextField(
                               style: TextStyle(
                                   fontSize: 18, color: Colors.black),
-                              obscureText: true,
+                              obscureText: !_showPass,
                               decoration: InputDecoration(
+                                  errorText: passInvalid ? wrongCredentialErr : passWrongFormat ? notFormatedPass: null,
                                   labelText: "PASSWORD",
                                   labelStyle: TextStyle(color: Color(0xff000000), fontSize: 15)
                               ),
+                              controller: passController,
                             ),
                             GestureDetector(
                               onTap: onToggleShowPass,
                               child: Text(
-                                "SHOW",
+                                _showPass ? "HIDE" :"SHOW",
                                 style: TextStyle(color: Colors.blue,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold),
@@ -125,6 +139,7 @@ class _MyAppState extends State<MyApp>{
                     Container(
                       height: 130,
                       width: double.infinity,
+
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -132,7 +147,7 @@ class _MyAppState extends State<MyApp>{
                               fontSize: 15, color: Color(0xff000000)),
                           ),
                           Text("FORGOT PASSWORD?",
-                              style: TextStyle(fontSize: 15, color: Colors.blue)
+                              style: TextStyle(fontSize: 15, color: Colors.black)
                           )
                         ],
                       ),
@@ -143,12 +158,19 @@ class _MyAppState extends State<MyApp>{
         )
     );
   }
+
   void onToggleShowPass(){
     setState(() {
-
+      _showPass=!_showPass;
     });
   }
+
   void onSignInClicked(){
+    setState(() {
+      if (passController.text.length < 8)  passWrongFormat=true;
+      else passWrongFormat=false;
+      if (!passInvalid && !userInvalid) ;
+    });
 
   }
 }
