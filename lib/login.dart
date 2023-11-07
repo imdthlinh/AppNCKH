@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(loginPage());
 
@@ -17,6 +16,14 @@ class _loginPageState extends State<loginPage>{
   var userInvalid=false;
   var passInvalid=false;
   var passWrongFormat=false;
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   TextEditingController userController = new TextEditingController();
   TextEditingController passController = new TextEditingController();
@@ -108,7 +115,7 @@ class _loginPageState extends State<loginPage>{
                               onTap: onToggleShowPass,
                               child: Text(
                                 _showPass ? "HIDE" :"SHOW",
-                                style: TextStyle(color: Colors.blue,
+                                style: TextStyle(color: Colors.black,
                                 fontSize: 13,
                                 fontWeight: FontWeight.bold),
                             ),
@@ -136,21 +143,35 @@ class _loginPageState extends State<loginPage>{
                       ),
                     ),
 
-                    Container(
-                      height: 130,
-                      width: double.infinity,
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text("SIGN UP", style: TextStyle(
-                              fontSize: 15, color: Color(0xff000000)),
-                          ),
-                          Text("FORGOT PASSWORD?",
+                    Column(
+                      children:<Widget>[
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          child: TextButton(
+                            child: Text(
+                              "SIGN UP",
                               style: TextStyle(fontSize: 15, color: Colors.black)
-                          )
-                        ],
-                      ),
+                            ),
+                            onPressed: (){
+                              _launchURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                            },
+                          ),
+                        ),
+                        Container(
+                          height: 40,
+                          width: double.infinity,
+                          child: TextButton(
+                            child: Text(
+                                "Forgot passwords or username?",
+                                style: TextStyle(fontSize: 15, color: Colors.black)
+                            ),
+                            onPressed: (){
+                              _launchURL("https://www.youtube.com/watch?v=y6120QOlsfU");
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ))
@@ -169,8 +190,13 @@ class _loginPageState extends State<loginPage>{
     setState(() {
       if (passController.text.length < 8)  passWrongFormat=true;
       else passWrongFormat=false;
-      if (!passInvalid && !userInvalid) ;
+      if (!passInvalid && !userInvalid) {
+        Navigator.push(context, MaterialPageRoute(builder: gotoHome));
+      }
     });
 
+  }
+  Widget gotoHome(BuildContext context){
+    return HomePage();
   }
 }
