@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class signupPage extends StatefulWidget{
@@ -9,7 +8,7 @@ class signupPage extends StatefulWidget{
 
 class _signupPageState extends State<signupPage>{
 
-  var notFormatedPass= "Passwords must be longer than 8 charaters";
+  var notFormatedPass= "Passwords must be longer than 8 characters";
   var notFormatedEmail= "Email not available";
   var notAvailUser="Username not availlable";
   var unmatchedPass="Unmatched password";
@@ -64,14 +63,7 @@ class _signupPageState extends State<signupPage>{
                             width: 70,
                             height: 70,
                             padding: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('images/actvn_big_icon.png'),
-                                fit: BoxFit.fill,
-                              ),
-                              shape: BoxShape.circle,
-                              color: Color(0xffd8d8d8),
-                            ),
+
                           ),
                         ),
 
@@ -91,7 +83,7 @@ class _signupPageState extends State<signupPage>{
                             controller: newEmail,
                             style: TextStyle(fontSize: 18, color: Colors.black),
                             decoration: InputDecoration(
-                                labelText: "Email",
+                                labelText: "EMAIL",
                                 errorText: emailWrongFotmat ? notFormatedEmail: null,
                                 labelStyle: TextStyle(
                                     color: Color(0xff000000), fontSize: 15)

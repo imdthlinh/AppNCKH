@@ -10,7 +10,7 @@ class loginPage extends StatefulWidget{
 class _loginPageState extends State<loginPage>{
 
   var wrongCredentialErr= "Wrong username or passwords";
-  var notFormatedPass= "Passwords must be longer than 8 charaters";
+  var notFormatedPass= "Passwords must be longer than 8 characters";
   var userInvalid=false;
   var passInvalid=false;
   var passWrongFormat=false;
