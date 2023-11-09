@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(loginPage());
-
 class loginPage extends StatefulWidget{
   @override
   _loginPageState createState() => _loginPageState();
@@ -56,18 +54,19 @@ class _loginPageState extends State<loginPage>{
                         children: <Widget>[
                         Padding(
                             padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                            child: Container(
-                            width: 70,
-                            height: 70,
-                            padding: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('images/actvn_big_icon.png'),
-                                fit: BoxFit.fill,
+                            child:
+                            Container(
+                              width: 70,
+                              height: 70,
+                              padding: EdgeInsets.all(30),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('images/actvn_big_icon.png'),
+                                  fit: BoxFit.fill,
+                                ),
+                                shape: BoxShape.circle,
+                                color: Color(0xffd8d8d8),
                               ),
-                              shape: BoxShape.circle,
-                              color: Color(0xffd8d8d8),
-                            ),
                             ),
                         ),
 
