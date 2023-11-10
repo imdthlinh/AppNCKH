@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_project/services/validation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class signupPage extends StatefulWidget{
@@ -8,15 +9,6 @@ class signupPage extends StatefulWidget{
 
 class _signupPageState extends State<signupPage>{
 
-  var notFormatedPass= "Passwords must be longer than 8 characters";
-  var notFormatedEmail= "Email not available";
-  var notAvailUser="Username not availlable";
-  var unmatchedPass="Unmatched password";
-  var userNotAvail=false;
-  var passWrongFormat=false;
-  var emailWrongFotmat=false;
-  var passUnmatched=false;
-
   _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -24,11 +16,6 @@ class _signupPageState extends State<signupPage>{
       throw 'Could not launch $url';
     }
   }
-
-  TextEditingController newUsername = new TextEditingController();
-  TextEditingController newPass = new TextEditingController();
-  TextEditingController newRepPass = new TextEditingController();
-  TextEditingController newEmail = new TextEditingController();
 
   bool _showPass= false;
   // This widget is the root of your application.
@@ -56,7 +43,6 @@ class _signupPageState extends State<signupPage>{
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                           child: Container(
@@ -144,7 +130,7 @@ class _signupPageState extends State<signupPage>{
                                       fontSize: 18, color: Colors.black),
                                   obscureText: !_showPass,
                                   decoration: InputDecoration(
-                                      errorText: passUnmatched ? unmatchedPass: null,
+                                      errorText: passWrongFormat ? unmatchedPass: null,
                                       labelText: "CONFRIM PASSWORD",
                                       labelStyle: TextStyle(color: Color(0xff000000), fontSize: 15)
                                   ),
@@ -196,14 +182,8 @@ class _signupPageState extends State<signupPage>{
   }
 
   void onSignInClicked(){
-    setState(() {
-      if (newPass.text.length < 8)  passWrongFormat=true;
-      else passWrongFormat=false;
-      if (!newUsername.text.contains('@')) emailWrongFotmat=true;
-      else emailWrongFotmat=false;
-      if (newPass != newRepPass) passUnmatched=true;
-      else passUnmatched=false;
-    });
-
+    setState() {
+      validMethod();
+    };
   }
 }
