@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_project/services/base_client.dart';
 
 void main() => runApp(HomePage());
 
@@ -14,10 +15,21 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            'All texts',
+            'Demo w Token',
             style: TextStyle(
                 fontSize: 30,
                 color: Colors.black
+            ),
+          ),
+        ),
+        body: Container(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
+            child: Text(
+              saveBody.toString(),
+              style: TextStyle(
+                fontSize: 20
+              ),
             ),
           ),
         ),
