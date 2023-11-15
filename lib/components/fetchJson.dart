@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-// final token = tokenFromJson(jsonString);
+//     final token = tokenFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -9,25 +9,37 @@ Token tokenFromJson(String str) => Token.fromJson(json.decode(str));
 String tokenToJson(Token data) => json.encode(data.toJson());
 
 class Token {
-  String username;
-  String password;
-  String email;
+  bool isSuccess;
+  Data data;
 
   Token({
-    required this.username,
-    required this.password,
-    required this.email,
+    required this.isSuccess,
+    required this.data,
   });
 
   factory Token.fromJson(Map<String, dynamic> json) => Token(
-        username: json["username"],
-        password: json["password"],
-        email: json["email"],
-      );
+    isSuccess: json["isSuccess"],
+    data: Data.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "username": username,
-        "password": password,
-        "email": email,
-      };
+    "isSuccess": isSuccess,
+    "data": data.toJson(),
+  };
+}
+
+class Data {
+  String token;
+
+  Data({
+    required this.token,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    token: json["token"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "token": token,
+  };
 }
